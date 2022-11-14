@@ -2,10 +2,14 @@
 // Address all the TODOs to make the tests pass!
 // Execute `rustlings hint enums3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 考察 Match 匹配运算符以及绑定值的 pattern
 
 enum Message {
-    // TODO: implement the message variant types based on their usage below
+    // implement the message variant types based on their usage below
+    Quit,
+    Move(Point),
+    Echo(String),
+    ChangeColor((u8, u8, u8)),
 }
 
 struct Point {
@@ -37,7 +41,13 @@ impl State {
     }
 
     fn process(&mut self, message: Message) {
-        // TODO: create a match expression to process the different message variants
+        // create a match expression to process the different message variants
+        match message {
+            Message::Move(point) => self.move_position(point),
+            Message::ChangeColor(color) => self.change_color(color),
+            Message::Echo(string) => self.echo(string),
+            Message::Quit => self.quit(),
+        }
     }
 }
 
