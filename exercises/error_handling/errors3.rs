@@ -4,7 +4,7 @@
 // Why not? What should we do to fix it?
 // Execute `rustlings hint errors3` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 考察使用 ? 的限定条件：返回值必须为 Result 类型
 
 use std::num::ParseIntError;
 
@@ -12,7 +12,12 @@ fn main() {
     let mut tokens = 100;
     let pretend_user_input = "8";
 
-    let cost = total_cost(pretend_user_input)?;
+    // let cost = match total_cost(pretend_user_input) {
+    //     Ok(i) => i,
+    //     Err(e) => panic!(e),
+    // };
+
+    let cost = total_cost(pretend_user_input).unwrap();
 
     if cost > tokens {
         println!("You can't afford that many!");

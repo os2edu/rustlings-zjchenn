@@ -8,7 +8,10 @@
 
 // Execute `rustlings hint errors6` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 解释一下第 37 行
+// s.parse 原本使用 unwrap 解析的，说明 parse 返回的结果是一个 Result 类型
+// map_err 是把上一句的结果产生的错误类型进行转换，变为 map_err 内的错误类型
+// 因此如果 parse 发生错误了，则会产生一个 ParsePosNonzeroError::from_parseint 类型的错误并抛出
 
 use std::num::ParseIntError;
 
@@ -23,16 +26,18 @@ impl ParsePosNonzeroError {
     fn from_creation(err: CreationError) -> ParsePosNonzeroError {
         ParsePosNonzeroError::Creation(err)
     }
-    // TODO: add another error conversion function here.
-    // fn from_parseint...
+    // add another error conversion function here.
+    fn from_parseint(err: ParseIntError) -> ParsePosNonzeroError {
+        ParsePosNonzeroError::ParseInt(err)
+    }
 }
 
 fn parse_pos_nonzero(s: &str)
     -> Result<PositiveNonzeroInteger, ParsePosNonzeroError>
 {
-    // TODO: change this to return an appropriate error instead of panicking
+    // change this to return an appropriate error instead of panicking
     // when `parse()` returns an error.
-    let x: i64 = s.parse().unwrap();
+    let x: i64 = s.parse().map_err(ParsePosNonzeroError::from_parseint)?;
     PositiveNonzeroInteger::new(x)
         .map_err(ParsePosNonzeroError::from_creation)
 }

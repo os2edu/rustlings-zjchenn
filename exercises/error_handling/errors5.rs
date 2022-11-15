@@ -16,14 +16,15 @@
 
 // Execute `rustlings hint errors5` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// main 函数中如何返回各种各样的 Error，TRPL 9.2 节最后有介绍这个内容
 
+use std::error::Error;
 use std::error;
 use std::fmt;
 use std::num::ParseIntError;
 
-// TODO: update the return type of `main()` to make this compile.
-fn main() -> Result<(), Box<dyn ???>> {
+// update the return type of `main()` to make this compile.
+fn main() -> Result<(), Box<dyn Error>> {
     let pretend_user_input = "42";
     let x: i64 = pretend_user_input.parse()?;
     println!("output={:?}", PositiveNonzeroInteger::new(x)?);
