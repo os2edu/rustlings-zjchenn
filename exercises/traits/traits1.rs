@@ -9,14 +9,18 @@
 // implementing this trait.
 // Execute `rustlings hint traits1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 考察 trait 的实现
 
 trait AppendBar {
     fn append_bar(self) -> Self;
 }
 
+// self 是 self: Self 的缩写
 impl AppendBar for String {
     //Add your code here
+    fn append_bar(self) -> Self {
+        format!("{}Bar", self)
+    }
 }
 
 fn main() {
