@@ -7,7 +7,7 @@
 fn main() {
     let my_option: Option<()> = None;
     if my_option.is_none() {
-        panic!();
+        println!("panic");
     }
 
     let my_arr = &[
@@ -16,7 +16,7 @@ fn main() {
     ];
     println!("My array! Here it is: {:?}", my_arr);
 
-    let my_empty_vec = vec![0, 5];  // 这一行可能存在更优的代码或更符合题意的代码
+    let my_empty_vec = vec![0;5];  // 这一行可能存在更优的代码或更符合题意的代码
     println!("This Vec is empty, see? {:?}", my_empty_vec);
 
     let mut value_a = 45;
