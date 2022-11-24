@@ -3,7 +3,9 @@
 // can offer. Follow the steps to complete the exercise.
 // Execute `rustlings hint iterators2` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
+// 第一个使用 input.chars() 可以获得一个 Chars 对象，这个对象是一个 string slice 上的迭代器
+// as_str()， 将底层数据变成一个原始数据的 subslice
+// 使用 collect 方法把数据进行打包
 
 // Step 1.
 // Complete the `capitalize_first` function.
@@ -12,7 +14,7 @@ pub fn capitalize_first(input: &str) -> String {
     let mut c = input.chars();
     match c.next() {
         None => String::new(),
-        Some(first) => ???,
+        Some(first) => first.to_uppercase().to_string() + c.as_str(),
     }
 }
 
@@ -21,7 +23,7 @@ pub fn capitalize_first(input: &str) -> String {
 // Return a vector of strings.
 // ["hello", "world"] -> ["Hello", "World"]
 pub fn capitalize_words_vector(words: &[&str]) -> Vec<String> {
-    vec![]
+    words.iter().map(|x| capitalize_first(x)).collect()
 }
 
 // Step 3.
@@ -29,7 +31,7 @@ pub fn capitalize_words_vector(words: &[&str]) -> Vec<String> {
 // Return a single string.
 // ["hello", " ", "world"] -> "Hello World"
 pub fn capitalize_words_string(words: &[&str]) -> String {
-    String::new()
+    words.iter().map(|x| capitalize_first(x)).collect()
 }
 
 #[cfg(test)]
